@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import SubjectCard from './SubjectCard';
 import { 
@@ -11,15 +12,11 @@ import {
   Network, 
   Code,
   Sparkles,
-  ArrowRight,
-  Search,
-  X
+  ArrowRight
 } from 'lucide-react';
 
 const SubjectGrid = () => {
   const [visibleCards, setVisibleCards] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredSubjects, setFilteredSubjects] = useState([]);
 
   const subjects = [
     {
@@ -114,33 +111,14 @@ const SubjectGrid = () => {
     }
   ];
 
-  // Filter subjects based on search query
+  // Animation for showing cards
   useEffect(() => {
-    if (searchQuery.trim() === '') {
-      setFilteredSubjects(subjects);
-    } else {
-      const filtered = subjects.filter(subject =>
-        subject.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        subject.abbreviation.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        subject.description.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setFilteredSubjects(filtered);
-    }
-  }, [searchQuery]);
-
-  // Reset animation when search results change
-  useEffect(() => {
-    setVisibleCards(0);
     const timer = setInterval(() => {
-      setVisibleCards(prev => prev < filteredSubjects.length ? prev + 1 : prev);
+      setVisibleCards(prev => prev < subjects.length ? prev + 1 : prev);
     }, 200);
 
     return () => clearInterval(timer);
-  }, [filteredSubjects]);
-
-  const clearSearch = () => {
-    setSearchQuery('');
-  };
+  }, []);
 
   return (
     <section id="subjects" className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
@@ -209,7 +187,7 @@ const SubjectGrid = () => {
                 </div>
               </div>
               <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent font-semibold">
-                {filteredSubjects.length} {filteredSubjects.length === 1 ? 'Subject' : 'Subjects'} Available
+                {subjects.length} Subjects Available
               </span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </div>
@@ -231,47 +209,6 @@ const SubjectGrid = () => {
             study materials <span className="text-blue-300 font-semibold">reviewed by experts</span>.
           </p>
 
-          {/* Search Bar with enhanced styling for dark background */}
-          <div className="max-w-2xl mx-auto mb-12">
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="relative bg-white/10 backdrop-blur-lg border border-white/30 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500">
-                <div className="flex items-center">
-                  <div className="pl-6">
-                    <Search className="w-6 h-6 text-blue-200 group-hover:text-cyan-300 transition-colors duration-300" />
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Search subjects by name, abbreviation, or description..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full py-6 px-6 bg-transparent text-white placeholder-blue-200 focus:outline-none focus:ring-0 text-lg"
-                  />
-                  {searchQuery && (
-                    <button
-                      onClick={clearSearch}
-                      className="pr-6 hover:scale-110 transition-transform duration-300"
-                    >
-                      <X className="w-5 h-5 text-blue-200 hover:text-red-400" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-            
-            {searchQuery && (
-              <div className="mt-4 text-sm text-blue-200">
-                {filteredSubjects.length === 0 ? (
-                  <p className="text-red-300">No subjects found matching "{searchQuery}"</p>
-                ) : (
-                  <p>
-                    Found {filteredSubjects.length} {filteredSubjects.length === 1 ? 'subject' : 'subjects'} matching "{searchQuery}"
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
-
           {/* Interactive Preview Stats with enhanced styling */}
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             {[
@@ -291,38 +228,22 @@ const SubjectGrid = () => {
           </div>
         </div>
 
-        {/* Subject Grid - keep existing code */}
-        {filteredSubjects.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
-            {filteredSubjects.map((subject, index) => (
-              <div 
-                key={subject.id} 
-                className={`transition-all duration-700 ${
-                  index < visibleCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                style={{ 
-                  transitionDelay: `${index * 100}ms`
-                }}
-              >
-                <SubjectCard {...subject} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-16">
-            <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-white/20 to-blue-200/30 rounded-full flex items-center justify-center backdrop-blur-lg">
-              <Search className="w-12 h-12 text-blue-200" />
-            </div>
-            <h3 className="text-2xl font-bold text-white mb-4">No subjects found</h3>
-            <p className="text-blue-200 mb-6">Try adjusting your search terms or browse all subjects.</p>
-            <button
-              onClick={clearSearch}
-              className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-xl transition-all duration-500 hover:scale-105"
+        {/* Subject Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
+          {subjects.map((subject, index) => (
+            <div 
+              key={subject.id} 
+              className={`transition-all duration-700 ${
+                index < visibleCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ 
+                transitionDelay: `${index * 100}ms`
+              }}
             >
-              Show All Subjects
-            </button>
-          </div>
-        )}
+              <SubjectCard {...subject} />
+            </div>
+          ))}
+        </div>
 
         {/* Enhanced Stats Section with updated styling */}
         <div className="text-center mt-20">
