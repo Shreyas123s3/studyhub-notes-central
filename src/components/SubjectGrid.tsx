@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SubjectCard from './SubjectCard';
 import ScrollReveal from './ScrollReveal';
 import { useParallaxEffect } from '../hooks/useScrollAnimation';
+import { getTotalNotesCount } from '../data/notesData';
 import { 
   Terminal, 
   Zap, 
@@ -19,6 +20,7 @@ import {
 const SubjectGrid = () => {
   const [visibleCards, setVisibleCards] = useState(0);
   const parallaxOffset = useParallaxEffect(0.2);
+  const totalNotes = getTotalNotesCount();
 
   const subjects = [
     {
@@ -246,7 +248,7 @@ const SubjectGrid = () => {
               <div className="flex items-center gap-4">
                 <div className="relative">
                   <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-500">
-                    <span className="text-white font-bold text-xl">472</span>
+                    <span className="text-white font-bold text-xl">{totalNotes || 472}</span>
                   </div>
                   <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
                 </div>
