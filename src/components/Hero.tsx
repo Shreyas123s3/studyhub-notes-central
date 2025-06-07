@@ -124,26 +124,6 @@ const Hero = () => {
               </div>
             ))}
           </div>
-
-          {/* Floating Stats */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {[
-              { number: '10+', label: 'Core Subjects', icon: '📚' },
-              { number: '500+', label: 'Study Materials', icon: '📄' },
-              { number: '24/7', label: 'Access Available', icon: '🕒' }
-            ].map((stat, index) => (
-              <div key={stat.label} className="group">
-                <div className="relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-500 hover:scale-105">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                  <div className="relative">
-                    <div className="text-3xl mb-2">{stat.icon}</div>
-                    <div className="text-3xl font-bold text-white mb-1">{stat.number}</div>
-                    <div className="text-blue-200 text-sm">{stat.label}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
