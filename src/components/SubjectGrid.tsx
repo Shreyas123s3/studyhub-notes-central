@@ -132,12 +132,12 @@ const SubjectGrid = () => {
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
+            className="absolute w-2 h-2 bg-blue-400/20 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animation: `float ${4 + Math.random() * 6}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 3}s`
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${4 + Math.random() * 6}s`
             }}
           />
         ))}
@@ -205,8 +205,7 @@ const SubjectGrid = () => {
                 index < visibleCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
               style={{ 
-                transitionDelay: `${index * 100}ms`,
-                animation: index < visibleCards ? `slideInUp 0.8s ease-out ${index * 0.1}s both` : 'none'
+                transitionDelay: `${index * 100}ms`
               }}
             >
               <SubjectCard {...subject} />
@@ -247,25 +246,6 @@ const SubjectGrid = () => {
           </div>
         </div>
       </div>
-
-      {/* Custom keyframes for animations */}
-      <style jsx>{`
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translate3d(0, 50px, 0);
-          }
-          to {
-            opacity: 1;
-            transform: translate3d(0, 0, 0);
-          }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-15px) rotate(2deg); }
-          66% { transform: translateY(5px) rotate(-2deg); }
-        }
-      `}</style>
     </section>
   );
 };

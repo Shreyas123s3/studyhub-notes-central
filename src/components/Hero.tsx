@@ -36,12 +36,12 @@ const Hero = () => {
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full opacity-40"
+              className="absolute w-1 h-1 bg-white rounded-full opacity-40 animate-float"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animation: `float ${3 + Math.random() * 4}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 2}s`
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${3 + Math.random() * 4}s`
               }}
             />
           ))}
@@ -146,15 +146,6 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-10px) rotate(5deg); }
-          66% { transform: translateY(5px) rotate(-5deg); }
-        }
-      `}</style>
     </section>
   );
 };
