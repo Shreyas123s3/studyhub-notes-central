@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { ArrowRight, Download, Clock, Star, BookOpen, TrendingUp } from 'lucide-react';
-import SubjectNotes from './SubjectNotes';
+import { ArrowRight, Download, Clock, Star, BookOpen, TrendingUp, ChevronDown, ChevronUp } from 'lucide-react';
+import ExpandableNotesSection from './ExpandableNotesSection';
 import { getNotesForSubject, getNotesCount } from '../data/notesData';
 
 interface SubjectCardProps {
@@ -24,22 +24,22 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
   noteCount
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [showNotes, setShowNotes] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const actualNotesCount = getNotesCount(id);
   const hasNotes = actualNotesCount > 0;
+  const notes = getNotesForSubject(id);
 
   const handleViewNotes = () => {
     if (hasNotes) {
-      setShowNotes(true);
+      setIsExpanded(!isExpanded);
     } else {
-      // You can show a toast or message that notes will be available soon
       console.log(`No notes available for ${abbreviation} yet`);
     }
   };
 
   return (
-    <>
+    <div className="w-full">
       <div 
         className="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-gray-100 cursor-pointer transition-all duration-700 hover:-translate-y-4 overflow-hidden"
         onMouseEnter={() => setIsHovered(true)}
@@ -49,7 +49,6 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
         <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-blue-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
         <div className="absolute -inset-2 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-cyan-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-700"></div>
         
-        {/* Animated border effect */}
         <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-20 transition-opacity duration-700"></div>
         <div className="absolute inset-[1px] rounded-3xl bg-white"></div>
         
@@ -64,7 +63,6 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                 </div>
                 <div className="absolute inset-0 bg-white/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              {/* Floating particles around icon */}
               <div className="absolute -top-2 -right-2 w-3 h-3 bg-yellow-400 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-bounce transition-all duration-500"></div>
               <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-pink-400 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700" style={{ animationDelay: '0.2s' }}></div>
             </div>
@@ -109,15 +107,23 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
               disabled={!hasNotes}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
-              <Download className="w-5 h-5 relative z-10 group-hover/btn:animate-bounce" />
+              {isExpanded ? (
+                <ChevronUp className="w-5 h-5 relative z-10 group-hover/btn:animate-bounce" />
+              ) : (
+                <Download className="w-5 h-5 relative z-10 group-hover/btn:animate-bounce" />
+              )}
               <span className="relative z-10">
-                {hasNotes ? 'View Notes' : 'Coming Soon'}
+                {hasNotes ? (isExpanded ? 'Hide Notes' : 'View Notes') : 'Coming Soon'}
               </span>
             </button>
             
             <div className="relative">
               <div className="p-4 rounded-2xl bg-gradient-to-r from-gray-50 to-blue-50 group-hover:from-engineering-blue/10 group-hover:to-tech-cyan/10 transition-all duration-500 border border-gray-100 group-hover:border-blue-200">
-                <ArrowRight className="w-6 h-6 text-gray-400 group-hover:text-engineering-blue group-hover:translate-x-2 group-hover:scale-110 transition-all duration-500" />
+                {isExpanded ? (
+                  <ChevronUp className="w-6 h-6 text-gray-400 group-hover:text-engineering-blue group-hover:translate-y-1 group-hover:scale-110 transition-all duration-500" />
+                ) : (
+                  <ArrowRight className="w-6 h-6 text-gray-400 group-hover:text-engineering-blue group-hover:translate-x-2 group-hover:scale-110 transition-all duration-500" />
+                )}
               </div>
               {isHovered && (
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
@@ -150,22 +156,22 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
         <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-engineering-blue/10 via-purple-500/10 to-tech-cyan/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 group-hover:animate-pulse"></div>
         <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-tr from-pink-400/10 to-yellow-400/10 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700" style={{ animationDelay: '0.3s' }}></div>
         
-        {/* Floating elements */}
         <div className="absolute top-6 right-6 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-60 group-hover:animate-bounce transition-all duration-500"></div>
         <div className="absolute bottom-8 left-8 w-1.5 h-1.5 bg-purple-400 rounded-full opacity-0 group-hover:opacity-60 transition-all duration-700" style={{ animationDelay: '0.4s' }}></div>
       </div>
 
-      {/* Notes Modal */}
-      {showNotes && hasNotes && (
-        <SubjectNotes
-          subjectId={id}
-          subjectName={name}
-          subjectAbbreviation={abbreviation}
-          notes={getNotesForSubject(id)}
-          onClose={() => setShowNotes(false)}
-        />
-      )}
-    </>
+      {/* Expandable Notes Section */}
+      <ExpandableNotesSection
+        isExpanded={isExpanded}
+        onToggle={() => setIsExpanded(!isExpanded)}
+        subjectId={id}
+        subjectName={name}
+        subjectAbbreviation={abbreviation}
+        notes={notes}
+        color={color}
+        icon={icon}
+      />
+    </div>
   );
 };
 
