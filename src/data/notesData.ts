@@ -14,157 +14,49 @@ interface SubjectNotes {
   [subjectId: string]: PDFNote[];
 }
 
-// INSTRUCTIONS FOR ADDING YOUR OWN PDFs:
-// 1. Create a folder called 'pdfs' in the 'public' directory
-// 2. Inside 'public/pdfs', create subfolders for each subject (e.g., 'physics', 'foc', 'linux', etc.)
-// 3. Place your PDF files in the appropriate subject folders
-// 4. Update the entries below with your actual PDF information
-// 5. The fileUrl should be '/pdfs/[subject-folder]/[your-pdf-filename].pdf'
-
-// Example: If you have a physics PDF called "mechanics-notes.pdf"
-// - Place it in: public/pdfs/physics/mechanics-notes.pdf
-// - Set fileUrl to: '/pdfs/physics/mechanics-notes.pdf'
-
+// This will store all the notes data
+// You can add PDFs here as you provide them
 export const notesData: SubjectNotes = {
   physics: [
-    {
-      id: 'physics-1',
-      title: 'Classical Mechanics Fundamentals',
-      description: 'Introduction to Newton\'s laws, motion, and fundamental principles of mechanics',
-      fileName: 'mechanics-fundamentals.pdf',
-      fileUrl: '/pdfs/physics/mechanics-fundamentals.pdf', // Place your PDF here
-      uploadDate: '2024-01-15',
-      category: 'Mechanics',
-      tags: ['mechanics', 'newton', 'motion', 'forces']
-    },
-    {
-      id: 'physics-2',
-      title: 'Thermodynamics Basics',
-      description: 'Heat, temperature, and the laws of thermodynamics',
-      fileName: 'thermodynamics-basics.pdf',
-      fileUrl: '/pdfs/physics/thermodynamics-basics.pdf',
-      uploadDate: '2024-01-20',
-      category: 'Thermodynamics',
-      tags: ['heat', 'temperature', 'entropy']
-    }
+    // Physics PDFs will be added here as you provide them
+    // Example structure:
+    // {
+    //   id: 'physics-1',
+    //   title: 'Mechanics Fundamentals',
+    //   description: 'Introduction to classical mechanics and motion',
+    //   fileName: 'physics-mechanics.pdf',
+    //   fileUrl: '/pdfs/physics/mechanics.pdf',
+    //   uploadDate: '2024-01-15',
+    //   category: 'Mechanics',
+    //   tags: ['mechanics', 'motion', 'forces']
+    // }
   ],
   foc: [
-    {
-      id: 'foc-1',
-      title: 'Programming Fundamentals',
-      description: 'Basic programming concepts, variables, and control structures',
-      fileName: 'programming-fundamentals.pdf',
-      fileUrl: '/pdfs/foc/programming-fundamentals.pdf',
-      uploadDate: '2024-01-10',
-      category: 'Programming',
-      tags: ['programming', 'variables', 'loops', 'functions']
-    },
-    {
-      id: 'foc-2',
-      title: 'Data Structures Introduction',
-      description: 'Arrays, linked lists, stacks, and queues',
-      fileName: 'data-structures-intro.pdf',
-      fileUrl: '/pdfs/foc/data-structures-intro.pdf',
-      uploadDate: '2024-01-25',
-      category: 'Data Structures',
-      tags: ['arrays', 'linked-lists', 'stacks', 'queues']
-    }
+    // Foundation of Computing PDFs will be added here
   ],
   linux: [
-    {
-      id: 'linux-1',
-      title: 'Linux Command Line Basics',
-      description: 'Essential commands for navigating and managing Linux systems',
-      fileName: 'linux-commands.pdf',
-      fileUrl: '/pdfs/linux/linux-commands.pdf',
-      uploadDate: '2024-01-12',
-      category: 'Commands',
-      tags: ['terminal', 'commands', 'bash', 'shell']
-    }
+    // Linux PDFs will be added here
   ],
   eee: [
-    {
-      id: 'eee-1',
-      title: 'Circuit Analysis Fundamentals',
-      description: 'Ohm\'s law, Kirchhoff\'s laws, and basic circuit analysis techniques',
-      fileName: 'circuit-analysis.pdf',
-      fileUrl: '/pdfs/eee/circuit-analysis.pdf',
-      uploadDate: '2024-01-18',
-      category: 'Circuits',
-      tags: ['circuits', 'ohm', 'kirchhoff', 'analysis']
-    }
+    // Electronics and Electrical Engineering PDFs will be added here
   ],
   cde: [
-    {
-      id: 'cde-1',
-      title: 'Limits and Derivatives',
-      description: 'Understanding limits, continuity, and basic differentiation',
-      fileName: 'limits-derivatives.pdf',
-      fileUrl: '/pdfs/cde/limits-derivatives.pdf',
-      uploadDate: '2024-01-14',
-      category: 'Calculus',
-      tags: ['limits', 'derivatives', 'calculus', 'differentiation']
-    }
+    // Calculus and Differential Equations PDFs will be added here
   ],
   eds: [
-    {
-      id: 'eds-1',
-      title: 'Introduction to Data Science',
-      description: 'Data types, data collection, and basic statistical concepts',
-      fileName: 'data-science-intro.pdf',
-      fileUrl: '/pdfs/eds/data-science-intro.pdf',
-      uploadDate: '2024-01-16',
-      category: 'Fundamentals',
-      tags: ['data', 'statistics', 'analysis', 'science']
-    }
+    // Essentials of Data Science PDFs will be added here
   ],
   sic: [
-    {
-      id: 'sic-1',
-      title: 'Probability Distributions',
-      description: 'Normal, binomial, and Poisson distributions',
-      fileName: 'probability-distributions.pdf',
-      fileUrl: '/pdfs/sic/probability-distributions.pdf',
-      uploadDate: '2024-01-22',
-      category: 'Probability',
-      tags: ['probability', 'distributions', 'normal', 'binomial']
-    }
+    // Statistics and Integral Calculus PDFs will be added here
   ],
   am: [
-    {
-      id: 'am-1',
-      title: 'Statics and Force Analysis',
-      description: 'Force vectors, equilibrium, and structural analysis',
-      fileName: 'statics-forces.pdf',
-      fileUrl: '/pdfs/am/statics-forces.pdf',
-      uploadDate: '2024-01-24',
-      category: 'Statics',
-      tags: ['statics', 'forces', 'equilibrium', 'vectors']
-    }
+    // Applied Mechanics PDFs will be added here
   ],
   son: [
-    {
-      id: 'son-1',
-      title: 'Ecosystem Fundamentals',
-      description: 'Food chains, energy flow, and ecological relationships',
-      fileName: 'ecosystem-fundamentals.pdf',
-      fileUrl: '/pdfs/son/ecosystem-fundamentals.pdf',
-      uploadDate: '2024-01-26',
-      category: 'Ecology',
-      tags: ['ecosystem', 'ecology', 'environment', 'nature']
-    }
+    // Science of Nature PDFs will be added here
   ],
   ds: [
-    {
-      id: 'ds-1',
-      title: 'Set Theory and Logic',
-      description: 'Mathematical sets, operations, and propositional logic',
-      fileName: 'set-theory-logic.pdf',
-      fileUrl: '/pdfs/ds/set-theory-logic.pdf',
-      uploadDate: '2024-01-28',
-      category: 'Logic',
-      tags: ['sets', 'logic', 'mathematics', 'discrete']
-    }
+    // Discrete Structures PDFs will be added here
   ]
 };
 
@@ -173,6 +65,7 @@ export const getNotesForSubject = (subjectId: string): PDFNote[] => {
   return notesData[subjectId] || [];
 };
 
+// Function to add a new note to a subject
 export const addNoteToSubject = (subjectId: string, note: PDFNote): void => {
   if (!notesData[subjectId]) {
     notesData[subjectId] = [];
@@ -180,10 +73,12 @@ export const addNoteToSubject = (subjectId: string, note: PDFNote): void => {
   notesData[subjectId].push(note);
 };
 
+// Function to get total notes count for a subject
 export const getNotesCount = (subjectId: string): number => {
   return notesData[subjectId]?.length || 0;
 };
 
+// Function to get total notes count across all subjects
 export const getTotalNotesCount = (): number => {
   return Object.values(notesData).reduce((total, notes) => total + notes.length, 0);
 };
