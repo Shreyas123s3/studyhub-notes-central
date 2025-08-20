@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Download, Sparkles, Zap, Star } from 'lucide-react';
 import { useParallaxEffect } from '../hooks/useScrollAnimation';
 import ScrollReveal from '../components/ScrollReveal';
+import SampleNotesModal from './SampleNotesModal';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -131,7 +132,14 @@ const Hero = () => {
         {/* Enhanced Action Buttons with Staggered Animation */}
         <ScrollReveal direction="up" delay={0.8}>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-            <button className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white px-12 py-6 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-500 hover:scale-105 hover:-translate-y-1">
+            <button 
+              onClick={() =>
+                document.getElementById("subjects")?.scrollIntoView({ 
+                  behavior: "smooth" 
+                })
+              }
+              className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white px-12 py-6 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-500 hover:scale-105 hover:-translate-y-1"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
               <div className="relative flex items-center gap-3">
                 <Download className="w-6 h-6 group-hover:animate-bounce" />
@@ -140,15 +148,7 @@ const Hero = () => {
               </div>
             </button>
             
-            <button className="group relative overflow-hidden border-2 border-white/50 text-white px-12 py-6 rounded-2xl font-bold text-lg hover:bg-white/10 hover:border-white transition-all duration-500 backdrop-blur-sm hover:scale-105 hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-              <div className="relative flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-                  <Sparkles className="w-4 h-4" />
-                </div>
-                <span>View Sample Notes</span>
-              </div>
-            </button>
+            <SampleNotesModal />
           </div>
         </ScrollReveal>
 
