@@ -63,12 +63,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// StudyHub custom colors
-				'engineering-blue': '#1e40af',
-				'tech-cyan': '#0891b2',
-				'success-green': '#059669',
-				'accent-orange': '#ea580c',
-				'light-gray': '#f8fafc',
+				// StudyHub custom colors - Updated palette
+				'first-color': '#a6e4e7',
+				'second-color': '#f9f9f9',
+				'third-color': '#ebcbae',
+				'fourth-color': '#8f8787',
 				'text-dark': '#1f2937'
 			},
 			borderRadius: {
