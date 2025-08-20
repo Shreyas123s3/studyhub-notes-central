@@ -5,6 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function SampleNotesModal() {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Get the file ID from environment variable or use fallback
+  const fileId = process.env.NEXT_PUBLIC_SAMPLE_DRIVE_FILE_ID;
+  const previewUrl = fileId 
+    ? `https://drive.google.com/file/d/${fileId}/preview`
+    : "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+  
+  const downloadUrl = fileId 
+    ? `https://drive.google.com/file/d/${fileId}/view`
+    : "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+
   return (
     <>
       {/* Button trigger */}
@@ -51,22 +61,32 @@ export default function SampleNotesModal() {
                   ✕
                 </button>
 
-                {/* Google Drive Embed */}
+                {/* PDF Embed */}
                 <div className="w-full h-[500px]">
-                  <iframe
-                    src="https://drive.google.com/file/d/1example_file_id/preview"
-                    width="100%"
-                    height="100%"
-                    allow="autoplay"
-                    className="rounded-t-2xl"
-                    title="Sample Notes Preview"
-                  ></iframe>
+                  {fileId ? (
+                    <iframe
+                      src={previewUrl}
+                      width="100%"
+                      height="100%"
+                      allow="autoplay"
+                      className="rounded-t-2xl"
+                      title="Sample Notes Preview"
+                    ></iframe>
+                  ) : (
+                    <embed
+                      src={previewUrl}
+                      width="100%"
+                      height="100%"
+                      type="application/pdf"
+                      className="rounded-t-2xl"
+                    />
+                  )}
                 </div>
 
                 {/* Footer with download button */}
                 <div className="p-6 flex justify-center bg-white/5">
                   <a
-                    href="https://drive.google.com/file/d/1example_file_id/view"
+                    href={downloadUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl shadow-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold"
