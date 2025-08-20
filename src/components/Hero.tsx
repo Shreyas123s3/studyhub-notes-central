@@ -133,11 +133,16 @@ const Hero = () => {
         <ScrollReveal direction="up" delay={0.8}>
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <button 
-              onClick={() =>
-                document.getElementById("subjects")?.scrollIntoView({ 
-                  behavior: "smooth" 
-                })
-              }
+              onClick={() => {
+                const subjectsSection = document.getElementById("subjects");
+                if (subjectsSection) {
+                  const offsetTop = subjectsSection.offsetTop - 80; // Add 80px offset for better visibility
+                  window.scrollTo({
+                    top: offsetTop,
+                    behavior: "smooth"
+                  });
+                }
+              }}
               className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 text-white px-12 py-6 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-cyan-500/25 transition-all duration-500 hover:scale-105 hover:-translate-y-1"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
