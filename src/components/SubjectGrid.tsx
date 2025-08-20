@@ -240,41 +240,6 @@ const SubjectGrid = () => {
             </ScrollReveal>
           ))}
         </div>
-
-        {/* Enhanced Stats Section with Scroll Reveal */}
-        <ScrollReveal direction="up" delay={1.2}>
-          <div className="text-center mt-20">
-            <div className="inline-flex items-center gap-8 bg-white/10 backdrop-blur-xl rounded-3xl px-12 py-8 shadow-2xl border border-white/30 hover:bg-white/15 transition-all duration-500 group hover:scale-105 hover:-translate-y-2">
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-500">
-                    <span className="text-white font-bold text-xl">{totalNotes || 472}</span>
-                  </div>
-                  <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                </div>
-                <div className="text-left">
-                  <div className="font-bold text-white text-lg">Total Notes</div>
-                  <div className="text-sm text-blue-200">Ready to download instantly</div>
-                </div>
-              </div>
-              
-              <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/30 to-transparent"></div>
-              
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-500">
-                    <Sparkles className="w-8 h-8 text-white animate-pulse" />
-                  </div>
-                  <div className="absolute -inset-2 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                </div>
-                <div className="text-left">
-                  <div className="font-bold text-white text-lg">Weekly Updates</div>
-                  <div className="text-sm text-blue-200">Fresh content added regularly</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   );
