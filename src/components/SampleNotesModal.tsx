@@ -6,7 +6,7 @@ export default function SampleNotesModal() {
   const [isOpen, setIsOpen] = useState(false);
 
   // Get the file ID from environment variable or use fallback
-  const fileId = process.env.NEXT_PUBLIC_SAMPLE_DRIVE_FILE_ID;
+  const fileId = import.meta.env.VITE_SAMPLE_DRIVE_FILE_ID;
   const previewUrl = fileId 
     ? `https://drive.google.com/file/d/${fileId}/preview`
     : "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
