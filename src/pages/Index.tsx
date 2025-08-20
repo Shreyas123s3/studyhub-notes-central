@@ -14,7 +14,7 @@ const Index = () => {
       
       {/* Footer with animated text */}
       <footer className="py-8 text-center">
-        <div className="text-xl font-medium">
+        <div className="text-4xl font-medium">
           <ColourfulText text="Built by Declutters" />
         </div>
       </footer>
