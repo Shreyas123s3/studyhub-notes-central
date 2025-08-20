@@ -25,17 +25,17 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
   const [isHovered, setIsHovered] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
 
-  // Google Drive folder links for each subject
+  // Updated Google Drive folder links for each subject
   const googleDriveLinks: { [key: string]: string } = {
+    am: 'https://drive.google.com/drive/folders/1bHxCLnJCAOwEQQCrwsw4ZdxVRr0fnohy?usp=sharing',
+    eds: 'https://drive.google.com/drive/folders/1vkmrNBuCfCraUQG1wNNQjE7Y6zB2wK84?usp=sharing',
+    physics: 'https://drive.google.com/drive/folders/10_fd8EEXgjae3S-aoo83-wtGTBgxNLEf?usp=sharing',
+    sic: 'https://drive.google.com/drive/folders/1P6f76reWc0LiYpP96qKko5jZBb9kY62i?usp=sharing',
+    son: 'https://drive.google.com/drive/folders/1KhrW1S1kDA1ulnafEM8HyCwxxruRvjVy?usp=sharing',
     eee: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
-    physics: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
     foc: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
     linux: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
     cde: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
-    eds: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
-    sic: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
-    am: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
-    son: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
     ds: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing'
   };
 
