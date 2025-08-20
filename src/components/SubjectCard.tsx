@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { ArrowRight, Download, Clock, Star, BookOpen, TrendingUp, X } from 'lucide-react';
 import { getNotesCount } from '../data/notesData';
@@ -57,7 +58,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
   // Convert Google Drive folder link to embed URL
   const getEmbedUrl = (driveUrl: string) => {
     const folderId = driveUrl.match(/folders\/([a-zA-Z0-9-_]+)/)?.[1];
-    return folderId ? `https://drive.google.com/embeddedfolderview?id=${folderId}#grid` : driveUrl;
+    return folderId ? `https://drive.google.com/embeddedfolderview?id=${folderId}#list` : driveUrl;
   };
 
   return (
@@ -217,6 +218,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                 src={getEmbedUrl(driveLink)}
                 className="w-full h-full border-0"
                 title={`${abbreviation} Notes Preview`}
+                style={{ width: '100%', height: '600px', border: '0' }}
               />
             </div>
           </div>
