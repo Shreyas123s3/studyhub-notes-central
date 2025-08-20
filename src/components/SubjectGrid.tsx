@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import SubjectCard from './SubjectCard';
 import ScrollReveal from './ScrollReveal';
@@ -19,6 +20,7 @@ import {
 
 const SubjectGrid = () => {
   const [visibleCards, setVisibleCards] = useState(0);
+  const [activeStudents, setActiveStudents] = useState(0);
   const parallaxOffset = useParallaxEffect(0.2);
   const totalNotes = getTotalNotesCount();
 
@@ -124,6 +126,18 @@ const SubjectGrid = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Update active students count every 10 seconds
+  useEffect(() => {
+    // Set initial random value
+    setActiveStudents(Math.floor(Math.random() * 21)); // 0 to 20
+    
+    const interval = setInterval(() => {
+      setActiveStudents(Math.floor(Math.random() * 21)); // 0 to 20
+    }, 10000); // Every 10 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="subjects" className="py-24 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden">
       {/* Enhanced 3D Background Effects with Parallax */}
@@ -209,9 +223,9 @@ const SubjectGrid = () => {
           {/* Interactive Preview Stats with enhanced styling */}
           <div className="flex flex-wrap justify-center gap-6 text-sm mb-20">
             {[
-              { label: 'Active Students', value: '2.5K+', color: 'from-blue-400 to-cyan-400' },
+              { label: 'Active Students', value: `${activeStudents}`, color: 'from-blue-400 to-cyan-400' },
               { label: 'Success Rate', value: '94%', color: 'from-green-400 to-emerald-400' },
-              { label: 'Updated Daily', value: '100%', color: 'from-purple-400 to-pink-400' }
+              { label: 'Updated Monthly', value: '100%', color: 'from-purple-400 to-pink-400' }
             ].map((stat, index) => (
               <div key={stat.label} className="group">
                 <div className="bg-white/10 backdrop-blur-lg border border-white/30 rounded-2xl px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 hover:-translate-y-1">

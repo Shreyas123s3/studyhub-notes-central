@@ -20,14 +20,14 @@ const Header = () => {
   return (
     <header className={`fixed top-0 w-full z-50 transition-all duration-700 ${
       isScrolled 
-        ? 'bg-white/90 backdrop-blur-2xl shadow-2xl border-b border-white/30' 
+        ? 'bg-white/10 backdrop-blur-2xl shadow-2xl border-b border-white/20' 
         : 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-100'
     } ${
       isScrolledPastHero 
-        ? 'scale-90 origin-top' 
+        ? 'scale-90 origin-top rounded-3xl mx-4 mt-2' 
         : 'scale-100'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${isScrolledPastHero ? 'max-w-none' : 'max-w-7xl'}`}>
         <div className={`flex justify-center items-center transition-all duration-700 ${
           isScrolledPastHero ? 'h-14' : 'h-20'
         }`}>

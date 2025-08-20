@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { ArrowRight, Download, Clock, Star, BookOpen, TrendingUp, X } from 'lucide-react';
-import { getNotesCount } from '../data/notesData';
+import { getNotesCount, isComingSoon } from '../data/notesData';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 
 interface SubjectCardProps {
@@ -40,17 +40,48 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
     ds: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing'
   };
 
+  // Varied ratings for each subject (3.5 to 5.0 range)
+  const ratings: { [key: string]: number } = {
+    physics: 4.7,
+    foc: 3.8,
+    linux: 4.2,
+    eee: 4.6,
+    cde: 3.9,
+    eds: 4.8,
+    sic: 4.4,
+    am: 4.5,
+    son: 4.1,
+    ds: 3.7
+  };
+
+  // Varied completion rates for each subject (70% to 100% range)
+  const completionRates: { [key: string]: number } = {
+    physics: 87,
+    foc: 72,
+    linux: 95,
+    eee: 91,
+    cde: 78,
+    eds: 96,
+    sic: 89,
+    am: 93,
+    son: 84,
+    ds: 76
+  };
+
   const actualNotesCount = getNotesCount(id);
   const driveLink = googleDriveLinks[id];
+  const comingSoon = isComingSoon(id);
+  const rating = ratings[id] || 4.0;
+  const completionRate = completionRates[id] || 85;
 
   const handleDownloadNotes = () => {
-    if (driveLink) {
+    if (driveLink && !comingSoon) {
       window.open(driveLink, '_blank');
     }
   };
 
   const handlePreview = () => {
-    if (driveLink) {
+    if (driveLink && !comingSoon) {
       setShowPreview(true);
     }
   };
@@ -106,12 +137,12 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                       <div className="flex items-center gap-2 text-sm text-gray-500 bg-gradient-to-r from-gray-50 to-blue-50 px-4 py-2 rounded-full border border-gray-100 group-hover:border-blue-200 transition-all duration-500">
                         <Clock className="w-4 h-4 group-hover:animate-spin" />
                         <span className="font-medium">
-                          {actualNotesCount > 0 ? `${actualNotesCount} PDFs` : `${noteCount} notes`}
+                          {actualNotesCount} {actualNotesCount === 1 ? 'note' : 'notes'}
                         </span>
                       </div>
                       <div className="mt-2 flex items-center gap-1 text-xs text-amber-600">
                         <Star className="w-3 h-3 fill-current" />
-                        <span>4.9</span>
+                        <span>{rating}</span>
                       </div>
                     </div>
                   </CardItem>
@@ -137,25 +168,33 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                 {/* Enhanced Action Area */}
                 <div className="flex items-center justify-between">
                   <CardItem translateZ="60">
-                    <button 
-                      onClick={handleDownloadNotes}
-                      className="group/btn relative overflow-hidden bg-gradient-to-r from-engineering-blue via-blue-600 to-tech-cyan hover:shadow-2xl hover:scale-110 text-white px-8 py-4 rounded-2xl font-semibold text-sm flex items-center gap-3 transition-all duration-500"
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
-                      <Download className="w-5 h-5 relative z-10 group-hover/btn:animate-bounce" />
-                      <span className="relative z-10">Download Notes</span>
-                    </button>
+                    {comingSoon ? (
+                      <div className="bg-gradient-to-r from-gray-400 to-gray-500 text-white px-8 py-4 rounded-2xl font-semibold text-sm flex items-center gap-3 cursor-not-allowed opacity-70">
+                        <Clock className="w-5 h-5" />
+                        <span>Coming Soon</span>
+                      </div>
+                    ) : (
+                      <button 
+                        onClick={handleDownloadNotes}
+                        className="group/btn relative overflow-hidden bg-gradient-to-r from-engineering-blue via-blue-600 to-tech-cyan hover:shadow-2xl hover:scale-110 text-white px-8 py-4 rounded-2xl font-semibold text-sm flex items-center gap-3 transition-all duration-500"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
+                        <Download className="w-5 h-5 relative z-10 group-hover/btn:animate-bounce" />
+                        <span className="relative z-10">Download Notes</span>
+                      </button>
+                    )}
                   </CardItem>
                   
                   <CardItem translateZ="30">
                     <div className="relative">
                       <button
                         onClick={handlePreview}
-                        className="p-4 rounded-2xl bg-gradient-to-r from-gray-50 to-blue-50 group-hover:from-engineering-blue/10 group-hover:to-tech-cyan/10 transition-all duration-500 border border-gray-100 group-hover:border-blue-200"
+                        className={`p-4 rounded-2xl bg-gradient-to-r from-gray-50 to-blue-50 group-hover:from-engineering-blue/10 group-hover:to-tech-cyan/10 transition-all duration-500 border border-gray-100 group-hover:border-blue-200 ${comingSoon ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={comingSoon}
                       >
                         <ArrowRight className="w-6 h-6 text-gray-400 group-hover:text-engineering-blue group-hover:translate-x-2 group-hover:scale-110 transition-all duration-500" />
                       </button>
-                      {isHovered && (
+                      {isHovered && !comingSoon && (
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
                       )}
                     </div>
@@ -172,13 +211,13 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                       </span>
                       <span className="flex items-center gap-1">
                         <TrendingUp className="w-3 h-3" />
-                        94%
+                        {completionRate}%
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
                       <div 
                         className="h-full bg-gradient-to-r from-green-400 to-emerald-500 rounded-full transition-all duration-1000 group-hover:animate-pulse"
-                        style={{ width: '94%' }}
+                        style={{ width: `${completionRate}%` }}
                       ></div>
                     </div>
                   </div>
@@ -198,7 +237,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
       </CardContainer>
 
       {/* Preview Modal */}
-      {showPreview && driveLink && (
+      {showPreview && driveLink && !comingSoon && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-6xl h-[80vh] relative overflow-hidden">
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
