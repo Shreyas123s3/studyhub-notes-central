@@ -134,7 +134,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
             <button 
               onClick={() => {
-                const subjectsSection = document.getElementById("subjects-section");
+                const subjectsSection = document.getElementById("subjects");
                 if (subjectsSection) {
                   const offsetTop = subjectsSection.offsetTop - 80; // Add 80px offset for better visibility
                   window.scrollTo({
