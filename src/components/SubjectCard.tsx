@@ -1,8 +1,6 @@
-
 import React, { useState } from 'react';
-import { ArrowRight, Download, Clock, Star, BookOpen, TrendingUp } from 'lucide-react';
-import SubjectNotes from './SubjectNotes';
-import { getNotesForSubject, getNotesCount } from '../data/notesData';
+import { ArrowRight, Download, Clock, Star, BookOpen, TrendingUp, X } from 'lucide-react';
+import { getNotesCount } from '../data/notesData';
 import { CardContainer, CardBody, CardItem } from './ui/3d-card';
 
 interface SubjectCardProps {
@@ -25,18 +23,41 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
   noteCount
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [showNotes, setShowNotes] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+
+  // Google Drive folder links for each subject
+  const googleDriveLinks: { [key: string]: string } = {
+    eee: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    physics: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    foc: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    linux: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    cde: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    eds: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    sic: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    am: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    son: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing',
+    ds: 'https://drive.google.com/drive/folders/1hC0EC9DIgUgKV-Kt21zZP39OCvvXs9CC?usp=sharing'
+  };
 
   const actualNotesCount = getNotesCount(id);
-  const hasNotes = actualNotesCount > 0;
+  const driveLink = googleDriveLinks[id];
 
-  const handleViewNotes = () => {
-    if (hasNotes) {
-      setShowNotes(true);
-    } else {
-      // You can show a toast or message that notes will be available soon
-      console.log(`No notes available for ${abbreviation} yet`);
+  const handleDownloadNotes = () => {
+    if (driveLink) {
+      window.open(driveLink, '_blank');
     }
+  };
+
+  const handlePreview = () => {
+    if (driveLink) {
+      setShowPreview(true);
+    }
+  };
+
+  // Convert Google Drive folder link to embed URL
+  const getEmbedUrl = (driveUrl: string) => {
+    const folderId = driveUrl.match(/folders\/([a-zA-Z0-9-_]+)/)?.[1];
+    return folderId ? `https://drive.google.com/embeddedfolderview?id=${folderId}#grid` : driveUrl;
   };
 
   return (
@@ -84,7 +105,7 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                       <div className="flex items-center gap-2 text-sm text-gray-500 bg-gradient-to-r from-gray-50 to-blue-50 px-4 py-2 rounded-full border border-gray-100 group-hover:border-blue-200 transition-all duration-500">
                         <Clock className="w-4 h-4 group-hover:animate-spin" />
                         <span className="font-medium">
-                          {hasNotes ? `${actualNotesCount} PDFs` : `${noteCount} notes`}
+                          {actualNotesCount > 0 ? `${actualNotesCount} PDFs` : `${noteCount} notes`}
                         </span>
                       </div>
                       <div className="mt-2 flex items-center gap-1 text-xs text-amber-600">
@@ -116,27 +137,23 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
                 <div className="flex items-center justify-between">
                   <CardItem translateZ="60">
                     <button 
-                      onClick={handleViewNotes}
-                      className={`group/btn relative overflow-hidden ${
-                        hasNotes 
-                          ? 'bg-gradient-to-r from-engineering-blue via-blue-600 to-tech-cyan hover:shadow-2xl hover:scale-110' 
-                          : 'bg-gradient-to-r from-gray-400 to-gray-500 cursor-not-allowed'
-                      } text-white px-8 py-4 rounded-2xl font-semibold text-sm flex items-center gap-3 transition-all duration-500`}
-                      disabled={!hasNotes}
+                      onClick={handleDownloadNotes}
+                      className="group/btn relative overflow-hidden bg-gradient-to-r from-engineering-blue via-blue-600 to-tech-cyan hover:shadow-2xl hover:scale-110 text-white px-8 py-4 rounded-2xl font-semibold text-sm flex items-center gap-3 transition-all duration-500"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
                       <Download className="w-5 h-5 relative z-10 group-hover/btn:animate-bounce" />
-                      <span className="relative z-10">
-                        {hasNotes ? 'View Notes' : 'Coming Soon'}
-                      </span>
+                      <span className="relative z-10">Download Notes</span>
                     </button>
                   </CardItem>
                   
                   <CardItem translateZ="30">
                     <div className="relative">
-                      <div className="p-4 rounded-2xl bg-gradient-to-r from-gray-50 to-blue-50 group-hover:from-engineering-blue/10 group-hover:to-tech-cyan/10 transition-all duration-500 border border-gray-100 group-hover:border-blue-200">
+                      <button
+                        onClick={handlePreview}
+                        className="p-4 rounded-2xl bg-gradient-to-r from-gray-50 to-blue-50 group-hover:from-engineering-blue/10 group-hover:to-tech-cyan/10 transition-all duration-500 border border-gray-100 group-hover:border-blue-200"
+                      >
                         <ArrowRight className="w-6 h-6 text-gray-400 group-hover:text-engineering-blue group-hover:translate-x-2 group-hover:scale-110 transition-all duration-500" />
-                      </div>
+                      </button>
                       {isHovered && (
                         <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
                       )}
@@ -179,15 +196,31 @@ const SubjectCard: React.FC<SubjectCardProps> = ({
         </CardBody>
       </CardContainer>
 
-      {/* Notes Modal */}
-      {showNotes && hasNotes && (
-        <SubjectNotes
-          subjectId={id}
-          subjectName={name}
-          subjectAbbreviation={abbreviation}
-          notes={getNotesForSubject(id)}
-          onClose={() => setShowNotes(false)}
-        />
+      {/* Preview Modal */}
+      {showPreview && driveLink && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-6xl h-[80vh] relative overflow-hidden">
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900">{abbreviation} - {name}</h3>
+                <p className="text-gray-600 text-sm">Preview notes and materials</p>
+              </div>
+              <button
+                onClick={() => setShowPreview(false)}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+              >
+                <X className="w-6 h-6 text-gray-500" />
+              </button>
+            </div>
+            <div className="h-full pb-20">
+              <iframe
+                src={getEmbedUrl(driveLink)}
+                className="w-full h-full border-0"
+                title={`${abbreviation} Notes Preview`}
+              />
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
