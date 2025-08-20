@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { ArrowRight, Download, Sparkles, Zap, Star } from 'lucide-react';
 import { useParallaxEffect } from '../hooks/useScrollAnimation';
 import ScrollReveal from '../components/ScrollReveal';
-import { BackgroundLines } from './ui/background-lines';
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -107,22 +106,17 @@ const Hero = () => {
           </div>
         </ScrollReveal>
         
-        {/* Enhanced Main Heading with BackgroundLines and Staggered Animation */}
+        {/* Enhanced Main Heading with Staggered Animation */}
         <ScrollReveal direction="up" delay={0.4}>
-          <div className="relative mb-8">
-            <BackgroundLines className="absolute inset-0 h-auto w-full opacity-30" svgOptions={{ duration: 15 }}>
-              <div></div>
-            </BackgroundLines>
-            <h1 className="relative z-20 text-6xl md:text-8xl font-extrabold leading-tight">
-              <span className="block text-white mb-4">
-                Free Engineering Notes for
-              </span>
-              <span className="block bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 bg-clip-text text-transparent relative">
-                First-Year Students
-                <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/20 to-pink-400/20 blur-2xl -z-10 animate-pulse"></div>
-              </span>
-            </h1>
-          </div>
+          <h1 className="text-6xl md:text-8xl font-extrabold mb-8 leading-tight">
+            <span className="block text-white mb-4">
+              Free Engineering Notes for
+            </span>
+            <span className="block bg-gradient-to-r from-yellow-300 via-orange-300 to-pink-300 bg-clip-text text-transparent relative">
+              First-Year Students
+              <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400/20 to-pink-400/20 blur-2xl -z-10 animate-pulse"></div>
+            </span>
+          </h1>
         </ScrollReveal>
         
         {/* Enhanced Description with Reveal Animation */}
