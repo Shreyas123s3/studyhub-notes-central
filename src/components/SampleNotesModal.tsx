@@ -5,15 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function SampleNotesModal() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Get the file ID from environment variable or use fallback
-  const fileId = import.meta.env.VITE_SAMPLE_DRIVE_FILE_ID;
-  const previewUrl = fileId 
-    ? `https://drive.google.com/file/d/${fileId}/preview`
-    : "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
-  
-  const downloadUrl = fileId 
-    ? `https://drive.google.com/file/d/${fileId}/view`
-    : "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+  // Use the specific Google Drive file ID you provided
+  const fileId = "1v1_DFFypv8stoCUws3MgEHjavhh7S2Pe";
+  const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+  const downloadUrl = `https://drive.google.com/file/d/${fileId}/view`;
 
   return (
     <>
@@ -63,24 +58,14 @@ export default function SampleNotesModal() {
 
                 {/* PDF Embed */}
                 <div className="w-full h-[500px]">
-                  {fileId ? (
-                    <iframe
-                      src={previewUrl}
-                      width="100%"
-                      height="100%"
-                      allow="autoplay"
-                      className="rounded-t-2xl"
-                      title="Sample Notes Preview"
-                    ></iframe>
-                  ) : (
-                    <embed
-                      src={previewUrl}
-                      width="100%"
-                      height="100%"
-                      type="application/pdf"
-                      className="rounded-t-2xl"
-                    />
-                  )}
+                  <iframe
+                    src={previewUrl}
+                    width="100%"
+                    height="100%"
+                    allow="autoplay"
+                    className="rounded-t-2xl"
+                    title="Sample Notes Preview"
+                  ></iframe>
                 </div>
 
                 {/* Footer with download button */}
