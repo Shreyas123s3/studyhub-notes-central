@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -18,7 +17,7 @@ const testimonials = [
   {
     name: "Tushar Kaldate",
     designation: "Member at ASSET",
-    src: "/lovable-uploads/6699e80d-dffa-4507-a555-715611bccbd1.png", // Tushar image
+    src: "/lovable-uploads/860402b2-4a42-426b-acb8-d4cb64f08bba.png", // Tushar image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
