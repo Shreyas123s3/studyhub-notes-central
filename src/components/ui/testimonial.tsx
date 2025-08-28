@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -7,7 +6,7 @@ const testimonials = [
   {
     name: "Shreyas Salunkhe",
     designation: "10x Coding Club",
-    src: "/lovable-uploads/29d0d3c9-72ac-4988-8e8c-c16616f8bb76.png",
+    src: "/lovable-uploads/29d0d3c9-72ac-4988-8e8c-c16616f8bb76.png", // Shreyas image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
@@ -18,7 +17,7 @@ const testimonials = [
   {
     name: "Tushar Kaldate",
     designation: "Member at ASSET",
-    src: "/lovable-uploads/24140414-6651-462c-8a89-c79d08fbe887.png",
+    src: "/lovable-uploads/24140414-6651-462c-8a89-c79d08fbe887.png", // Tushar image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
@@ -29,7 +28,7 @@ const testimonials = [
   {
     name: "Aradhya Avhad",
     designation: "Mozilla Club & ASSET member",
-    src: "/lovable-uploads/bffe7b0b-fbb4-440e-b23a-8db55459d7ce.png",
+    src: "/lovable-uploads/bffe7b0b-fbb4-440e-b23a-8db55459d7ce.png", // Aradhya image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
@@ -40,7 +39,7 @@ const testimonials = [
   {
     name: "Pranshu Bobade",
     designation: "GDG Club & ASSET member",
-    src: "/lovable-uploads/6115933e-23ea-4e17-819f-c1bdcbdf3536.png",
+    src: "/lovable-uploads/6115933e-23ea-4e17-819f-c1bdcbdf3536.png", // Pranshu image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
@@ -85,7 +84,23 @@ const AnimatedTestimonials = ({
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 font-sans antialiased md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-16">
+      <style jsx>{`
+        .team-section img {
+          filter: brightness(1.1) contrast(1.05);
+        }
+        .team-section h3,
+        .team-section p {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+          color: white !important;
+        }
+        .team-section .text-blue-200 {
+          color: #bfdbfe !important;
+        }
+        .team-section .text-blue-100 {
+          color: #dbeafe !important;
+        }
+      `}</style>
+      <div className="relative grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-16 team-section">
         {/* Image Section - Larger and more visible */}
         <div className="flex items-center justify-center">
           <div className="relative h-[36rem] w-[30rem] md:h-[40rem] md:w-[32rem]">
@@ -112,6 +127,8 @@ const AnimatedTestimonials = ({
                     height={500}
                     draggable={false}
                     className="h-full w-full rounded-3xl object-cover shadow-2xl"
+                    onLoad={() => console.log(`Image loaded for ${testimonial.name}: ${testimonial.src}`)}
+                    onError={() => console.error(`Failed to load image for ${testimonial.name}: ${testimonial.src}`)}
                   />
                 </motion.div>
               ))}
