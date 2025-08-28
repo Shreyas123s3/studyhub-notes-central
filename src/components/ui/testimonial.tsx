@@ -10,8 +10,8 @@ const testimonials = [
     src: "/lovable-uploads/df3ccc4e-7090-4a75-8473-57508a12efbf.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/shreyas_trx?igsh=ZjNjc3V5YWR3MjVy" target="_blank" className="text-pink-400 hover:underline">Instagram</a>
+        <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
+        <a href="https://www.instagram.com/shreyas_trx?igsh=ZjNjc3V5YWR3MjVy" target="_blank" rel="noreferrer" className="text-pink-400 hover:underline">Instagram</a>
       </>
     ),
   },
@@ -21,8 +21,8 @@ const testimonials = [
     src: "/lovable-uploads/a92fecfe-bd61-4250-bc0e-1a860941f15d.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/3412kkp" target="_blank" className="text-pink-400 hover:underline">Instagram</a>
+        <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
+        <a href="https://www.instagram.com/3412kkp" target="_blank" rel="noreferrer" className="text-pink-400 hover:underline">Instagram</a>
       </>
     ),
   },
@@ -32,7 +32,7 @@ const testimonials = [
     src: "/lovable-uploads/13b9ac3f-a9f9-4583-b852-97de1354af41.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
+        <a href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
         <span className="text-gray-400">Instagram N/A</span>
       </>
     ),
@@ -43,8 +43,8 @@ const testimonials = [
     src: "/lovable-uploads/1cf3a87d-cfa4-4545-ad2d-bc831548d642.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/notyetaegon?igsh=emVkeXNqaDRkMDFs" target="_blank" className="text-pink-400 hover:underline">Instagram</a>
+        <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
+        <a href="https://www.instagram.com/notyetaegon?igsh=emVkeXNqaDRkMDFs" target="_blank" rel="noreferrer" className="text-pink-400 hover:underline">Instagram</a>
       </>
     ),
   },
