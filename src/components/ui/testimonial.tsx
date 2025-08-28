@@ -39,7 +39,7 @@ const testimonials = [
   {
     name: "Pranshu Bobade",
     designation: "GDG Club & ASSET member",
-    src: "/lovable-uploads/59215696-90e4-4c37-bad9-1c8fdbc91219.png", // Pranshu image
+    src: "/lovable-uploads/b4f7e444-88bd-4442-89b5-9c4845dfdec5.png", // Pranshu image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
