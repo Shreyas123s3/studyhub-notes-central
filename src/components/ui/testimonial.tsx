@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -84,7 +85,7 @@ const AnimatedTestimonials = ({
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-8 font-sans antialiased md:px-8 lg:px-12">
-      <style jsx>{`
+      <style>{`
         .team-section img {
           filter: brightness(1.1) contrast(1.05);
         }
