@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -7,7 +6,7 @@ const testimonials = [
   {
     name: "Shreyas Salunkhe",
     designation: "10x Coding Club",
-    src: "/lovable-uploads/29d0d3c9-72ac-4988-8e8c-c16616f8bb76.png", // Shreyas image
+    src: "/lovable-uploads/55ad6781-06fe-4418-9347-1085b456a6f3.png", // Shreyas image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
@@ -18,7 +17,7 @@ const testimonials = [
   {
     name: "Tushar Kaldate",
     designation: "Member at ASSET",
-    src: "/lovable-uploads/24140414-6651-462c-8a89-c79d08fbe887.png", // Tushar image
+    src: "/lovable-uploads/6699e80d-dffa-4507-a555-715611bccbd1.png", // Tushar image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
@@ -29,7 +28,7 @@ const testimonials = [
   {
     name: "Aradhya Avhad",
     designation: "Mozilla Club & ASSET member",
-    src: "/lovable-uploads/bffe7b0b-fbb4-440e-b23a-8db55459d7ce.png", // Aradhya image
+    src: "/lovable-uploads/a7e6a62e-cada-4a52-8f8b-491e1cb7f223.png", // Aradhya image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
@@ -40,7 +39,7 @@ const testimonials = [
   {
     name: "Pranshu Bobade",
     designation: "GDG Club & ASSET member",
-    src: "/lovable-uploads/6115933e-23ea-4e17-819f-c1bdcbdf3536.png", // Pranshu image
+    src: "/lovable-uploads/59215696-90e4-4c37-bad9-1c8fdbc91219.png", // Pranshu image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
