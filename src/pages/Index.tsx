@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
@@ -13,12 +14,12 @@ const Index = () => {
       <SubjectGrid />
       
       {/* The Team Section */}
-      <section id="team" className="relative w-full py-10 md:py-14">
+      <section id="team" className="relative w-full py-10 md:py-12">
         <div className="mx-auto w-full max-w-6xl px-4 md:px-6">
-          <h2 className="text-center text-4xl font-extrabold mb-8 md:mb-10">
-            The Team
+          <h2 className="text-center text-4xl md:text-5xl font-extrabold text-white mb-8">
+            The <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-purple-300 bg-clip-text text-transparent">Team</span>
           </h2>
-          {/* The carousel fills ~80% of this section; keep background transparent */}
+          
           <TeamCarousel />
         </div>
       </section>
