@@ -7,44 +7,44 @@ const testimonials = [
   {
     name: "Shreyas Salunkhe",
     designation: "10x Coding Club",
-    src: "/lovable-uploads/df3ccc4e-7090-4a75-8473-57508a12efbf.png",
+    src: "/lovable-uploads/29d0d3c9-72ac-4988-8e8c-c16616f8bb76.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/shreyas_trx?igsh=ZjNjc3V5YWR3MjVy" target="_blank" rel="noreferrer" className="text-pink-400 hover:underline">Instagram</a>
+        <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
+        <a href="https://www.instagram.com/shreyas_trx?igsh=ZjNjc3V5YWR3MjVy" target="_blank" rel="noreferrer" className="text-pink-300 hover:text-pink-200 underline">Instagram</a>
       </>
     ),
   },
   {
     name: "Tushar Kaldate",
     designation: "Member at ASSET",
-    src: "/lovable-uploads/a92fecfe-bd61-4250-bc0e-1a860941f15d.png",
+    src: "/lovable-uploads/24140414-6651-462c-8a89-c79d08fbe887.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/3412kkp" target="_blank" rel="noreferrer" className="text-pink-400 hover:underline">Instagram</a>
+        <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
+        <a href="https://www.instagram.com/3412kkp" target="_blank" rel="noreferrer" className="text-pink-300 hover:text-pink-200 underline">Instagram</a>
       </>
     ),
   },
   {
     name: "Aradhya Avhad",
     designation: "Mozilla Club & ASSET member",
-    src: "/lovable-uploads/13b9ac3f-a9f9-4583-b852-97de1354af41.png",
+    src: "/lovable-uploads/bffe7b0b-fbb4-440e-b23a-8db55459d7ce.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <span className="text-gray-400">Instagram N/A</span>
+        <a href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
+        <span className="text-white/70">Instagram N/A</span>
       </>
     ),
   },
   {
     name: "Pranshu Bobade",
     designation: "GDG Club & ASSET member",
-    src: "/lovable-uploads/1cf3a87d-cfa4-4545-ad2d-bc831548d642.png",
+    src: "/lovable-uploads/6115933e-23ea-4e17-819f-c1bdcbdf3536.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/notyetaegon?igsh=emVkeXNqaDRkMDFs" target="_blank" rel="noreferrer" className="text-pink-400 hover:underline">Instagram</a>
+        <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
+        <a href="https://www.instagram.com/notyetaegon?igsh=emVkeXNqaDRkMDFs" target="_blank" rel="noreferrer" className="text-pink-300 hover:text-pink-200 underline">Instagram</a>
       </>
     ),
   },
@@ -84,19 +84,19 @@ const AnimatedTestimonials = ({
   const randomRotate = () => `${Math.floor(Math.random() * 16) - 8}deg`;
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 font-sans antialiased md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-x-24">
-        {/* Image Section - Much Larger */}
+    <div className="mx-auto max-w-6xl px-4 py-8 font-sans antialiased md:px-8 lg:px-12">
+      <div className="relative grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-16">
+        {/* Image Section - Larger and more visible */}
         <div className="flex items-center justify-center">
-          <div className="relative h-[32rem] w-[26rem] md:h-[36rem] md:w-[30rem]">
+          <div className="relative h-[36rem] w-[30rem] md:h-[40rem] md:w-[32rem]">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.src}
                   initial={{ opacity: 0, scale: 0.9, y: 50, rotate: randomRotate() }}
                   animate={{
-                    opacity: isActive(index) ? 1 : 0.5,
-                    scale: isActive(index) ? 1 : 0.9,
+                    opacity: isActive(index) ? 1 : 0.6,
+                    scale: isActive(index) ? 1 : 0.92,
                     y: isActive(index) ? 0 : 20,
                     zIndex: isActive(index) ? testimonials.length : testimonials.length - Math.abs(index - active),
                     rotate: isActive(index) ? '0deg' : randomRotate(),
@@ -119,7 +119,7 @@ const AnimatedTestimonials = ({
           </div>
         </div>
 
-        {/* Text Section */}
+        {/* Text Section - Enhanced visibility on dark background */}
         <div className="flex flex-col justify-center py-4">
           <AnimatePresence mode="wait">
             <motion.div
@@ -131,13 +131,13 @@ const AnimatedTestimonials = ({
               className="flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-3xl md:text-4xl font-bold text-white">
+                <h3 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
                   {testimonials[active].name}
                 </h3>
-                <p className="text-lg text-blue-200 mt-2">
+                <p className="text-lg text-blue-200 mt-2 drop-shadow">
                   {testimonials[active].designation}
                 </p>
-                <motion.p className="mt-8 text-xl text-blue-100">
+                <motion.p className="mt-8 text-xl text-blue-100 drop-shadow">
                   {testimonials[active].quote}
                 </motion.p>
               </div>
