@@ -1,6 +1,13 @@
+
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+
+/**
+ * TeamCarousel — transparent, visible, robust image loading + fallbacks.
+ * - Images must be placed into /public (exact filenames used below).
+ * - This component intentionally has NO background so the site's gradient + animated dots show through.
+ */
 
 type Testimonial = {
   name: string;
@@ -75,16 +82,18 @@ export default function TeamCarousel({ autoplay = true }: { autoplay?: boolean }
   const randomRotate = () => `${Math.floor(Math.random() * 16) - 8}deg`;
 
   return (
-    // transparent wrapper so page background + dots remain visible
+    // NO background classes here so page gradient + dots show through.
     <div className="w-full">
       <div className="mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-y-8 md:grid-cols-2 md:gap-x-16">
+          {/* Image stack */}
           <div className="flex items-center justify-center">
             <div className="relative h-[28rem] w-[22rem] md:h-[30rem] md:w-[28rem]">
               <AnimatePresence>
                 {testimonials.map((t, i) => (
                   <motion.div
                     key={t.src}
+                    className="testimonial-card absolute inset-0 origin-bottom"
                     initial={{ opacity: 0, scale: 0.9, y: 40, rotate: randomRotate() }}
                     animate={{
                       opacity: isActive(i) ? 1 : 0.45,
@@ -95,22 +104,24 @@ export default function TeamCarousel({ autoplay = true }: { autoplay?: boolean }
                     }}
                     exit={{ opacity: 0, scale: 0.9, y: -40 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute inset-0 origin-bottom"
-                    style={{ willChange: "transform, opacity" }}
+                    style={{ willChange: "transform, opacity", background: "transparent" }}
                   >
                     <img
                       src={t.src}
                       alt={t.name}
                       draggable={false}
-                      // ensure visible: block + object-cover, explicit sizes
-                      className="block h-full w-full rounded-3xl object-cover shadow-2xl"
+                      loading="eager"
                       width={800}
                       height={800}
+                      className="block h-full w-full rounded-3xl object-cover shadow-2xl"
+                      style={{ background: "transparent", display: "block" }}
                       onError={(e: any) => {
-                        // fallback: if local asset fails, keep visible placeholder
-                        e.currentTarget.style.display = "block";
-                        e.currentTarget.src = `/placeholders/${t.name.replace(/\s+/g, "-").toLowerCase()}.png`;
-                        e.currentTarget.onerror = null;
+                        // hide broken images so stacked white cards don't show
+                        const img = e.currentTarget as HTMLImageElement;
+                        img.style.display = "none";
+                        const parent = img.closest(".testimonial-card") as HTMLElement | null;
+                        if (parent) parent.style.display = "none";
+                        img.onerror = null;
                       }}
                     />
                   </motion.div>
@@ -119,6 +130,7 @@ export default function TeamCarousel({ autoplay = true }: { autoplay?: boolean }
             </div>
           </div>
 
+          {/* Text + controls */}
           <div className="py-2">
             <AnimatePresence mode="wait">
               <motion.div
@@ -128,6 +140,7 @@ export default function TeamCarousel({ autoplay = true }: { autoplay?: boolean }
                 exit={{ opacity: 0, y: -18 }}
                 transition={{ duration: 0.28, ease: "easeInOut" }}
               >
+                {/* Force white text so it is visible on the purple background */}
                 <h3 className="text-2xl md:text-3xl font-extrabold text-white">{testimonials[active].name}</h3>
                 <p className="text-sm text-white/80 mt-1">{testimonials[active].designation}</p>
                 <p className="mt-6 text-lg text-white/90">{testimonials[active].links}</p>
@@ -145,6 +158,14 @@ export default function TeamCarousel({ autoplay = true }: { autoplay?: boolean }
           </div>
         </div>
       </div>
+
+      {/* emergency CSS override -- minimal and scoped to the #team area.
+          If site overlay or parent background is blocking this section, this override ensures transparency & image visibility.
+          These rules are intentionally narrow and scoped to #team to avoid global changes. */}
+      <style>{`
+        #team, #team * { background: transparent !important; }
+        #team img { display:block !important; opacity:1 !important; visibility:visible !important; }
+      `}</style>
     </div>
   );
 }
