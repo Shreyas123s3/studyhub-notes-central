@@ -1,115 +1,164 @@
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
-const testimonials = [
+type Testimonial = {
+  name: string;
+  designation: string;
+  src: string;
+  links: React.ReactNode;
+};
+
+const testimonials: Testimonial[] = [
   {
     name: "Shreyas Salunkhe",
     designation: "10x Coding Club",
-    src: "/lovable-uploads/6699e80d-dffa-4507-a555-715611bccbd1.png",
-    quote: (
+    src: "/shreyas.jpeg",
+    links: (
       <>
-        <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/shreyas_trx?igsh=ZjNjc3V5YWR3MjVy" target="_blank" className="text-pink-400 hover:underline">Instagram</a>
+        <a
+          href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          LinkedIn
+        </a>{" "}
+        |{" "}
+        <a
+          href="https://www.instagram.com/shreyas_trx?igsh=ZjNjc3V5YWR3MjVy"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          Instagram
+        </a>
       </>
     ),
   },
   {
     name: "Tushar Kaldate",
     designation: "Member at ASSET",
-    src: "/lovable-uploads/55ad6781-06fe-4418-9347-1085b456a6f3.png",
-    quote: (
+    src: "/tushar.jpeg",
+    links: (
       <>
-        <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/3412kkp" target="_blank" className="text-pink-400 hover:underline">Instagram</a>
+        <a
+          href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          LinkedIn
+        </a>{" "}
+        |{" "}
+        <a
+          href="https://www.instagram.com/3412kkp"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          Instagram
+        </a>
       </>
     ),
   },
   {
     name: "Aradhya Avhad",
     designation: "Mozilla Club & ASSET member",
-    src: "/lovable-uploads/59215696-90e4-4c37-bad9-1c8fdbc91219.png",
-    quote: (
+    src: "/aradhya.jpeg",
+    links: (
       <>
-        <a href="https://www.linkedin.com/in/aradhya-avhad-800552327" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <span className="text-gray-400">Instagram N/A</span>
+        <a
+          href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          LinkedIn
+        </a>{" "}
+        | <span className="opacity-70">Instagram N/A</span>
       </>
     ),
   },
   {
     name: "Pranshu Bobade",
     designation: "GDG Club & ASSET member",
-    src: "/lovable-uploads/a7e6a62e-cada-4a52-8f8b-491e1cb7f223.png",
-    quote: (
+    src: "/pranshu.jpeg",
+    links: (
       <>
-        <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
-        <a href="https://www.instagram.com/notyetaegon?igsh=emVkeXNqaDRkMDFs" target="_blank" className="text-pink-400 hover:underline">Instagram</a>
+        <a
+          href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          LinkedIn
+        </a>{" "}
+        |{" "}
+        <a
+          href="https://www.instagram.com/notyetaegon?igsh=emVkeXNqaDRkMDFs"
+          target="_blank"
+          rel="noreferrer"
+          className="hover:underline"
+        >
+          Instagram
+        </a>
       </>
     ),
   },
 ];
 
-type Testimonial = {
-  name: string;
-  designation: string;
-  src: string;
-  quote: JSX.Element;
-};
-
-const AnimatedTestimonials = ({
-  testimonials,
+function AnimatedTestimonials({
   autoplay = true,
 }: {
-  testimonials: Testimonial[];
   autoplay?: boolean;
-}) => {
+}) {
   const [active, setActive] = useState(0);
-
-  const handleNext = React.useCallback(() => {
-    setActive((prev) => (prev + 1) % testimonials.length);
-  }, [testimonials.length]);
-
-  const handlePrev = () => {
-    setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  const handleNext = React.useCallback(
+    () => setActive((p) => (p + 1) % testimonials.length),
+    []
+  );
+  const handlePrev = () =>
+    setActive((p) => (p - 1 + testimonials.length) % testimonials.length);
 
   useEffect(() => {
     if (!autoplay) return;
-    const interval = setInterval(handleNext, 5000);
-    return () => clearInterval(interval);
+    const id = setInterval(handleNext, 5000);
+    return () => clearInterval(id);
   }, [autoplay, handleNext]);
 
-  const isActive = (index: number) => index === active;
+  const isActive = (i: number) => i === active;
   const randomRotate = () => `${Math.floor(Math.random() * 16) - 8}deg`;
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-20">
-        {/* Image Section */}
+    // transparent container so the page's existing gradient + dots show through
+    <div className="mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="grid grid-cols-1 items-center gap-y-10 md:grid-cols-2 md:gap-x-16">
+        {/* Image stack (bigger now) */}
         <div className="flex items-center justify-center">
-          <div className="relative h-80 w-full max-w-xs">
+          <div className="relative h-[28rem] w-[22rem] md:h-[30rem] md:w-[24rem]">
             <AnimatePresence>
-              {testimonials.map((testimonial, index) => (
+              {testimonials.map((t, i) => (
                 <motion.div
-                  key={testimonial.src}
+                  key={t.src}
                   initial={{ opacity: 0, scale: 0.9, y: 50, rotate: randomRotate() }}
                   animate={{
-                    opacity: isActive(index) ? 1 : 0.5,
-                    scale: isActive(index) ? 1 : 0.9,
-                    y: isActive(index) ? 0 : 20,
-                    zIndex: isActive(index) ? testimonials.length : testimonials.length - Math.abs(index - active),
-                    rotate: isActive(index) ? '0deg' : randomRotate(),
+                    opacity: isActive(i) ? 1 : 0.45,
+                    scale: isActive(i) ? 1 : 0.92,
+                    y: isActive(i) ? 0 : 18,
+                    zIndex: isActive(i) ? 40 : 10,
+                    rotate: isActive(i) ? "0deg" : randomRotate(),
                   }}
                   exit={{ opacity: 0, scale: 0.9, y: -50 }}
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="absolute inset-0 origin-bottom"
                 >
                   <img
-                    src={testimonial.src}
-                    alt={testimonial.name}
-                    width={500}
-                    height={500}
+                    src={t.src}
+                    alt={t.name}
+                    width={640}
+                    height={640}
                     draggable={false}
                     className="h-full w-full rounded-3xl object-cover shadow-2xl"
                   />
@@ -119,54 +168,45 @@ const AnimatedTestimonials = ({
           </div>
         </div>
 
-        {/* Text Section */}
-        <div className="flex flex-col justify-center py-4">
+        {/* Text + controls */}
+        <div className="py-2">
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="flex flex-col justify-between"
+              exit={{ opacity: 0, y: -18 }}
+              transition={{ duration: 0.28, ease: "easeInOut" }}
             >
-              <div>
-                <h3 className="text-2xl font-bold text-white">
-                  {testimonials[active].name}
-                </h3>
-                <p className="text-sm text-blue-200">
-                  {testimonials[active].designation}
-                </p>
-                <motion.p className="mt-8 text-lg text-blue-100">
-                  {testimonials[active].quote}
-                </motion.p>
-              </div>
+              <h3 className="text-2xl font-bold">{testimonials[active].name}</h3>
+              <p className="text-sm opacity-80">{testimonials[active].designation}</p>
+              <p className="mt-6 text-lg">{testimonials[active].links}</p>
             </motion.div>
           </AnimatePresence>
 
-          {/* Controls */}
-          <div className="flex gap-4 pt-12">
-            <button onClick={handlePrev} className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <ArrowLeft className="h-5 w-5 text-white" />
+          <div className="mt-10 flex gap-4">
+            <button
+              onClick={handlePrev}
+              aria-label="Previous"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-black/5 hover:bg-black/10 backdrop-blur"
+            >
+              <ArrowLeft className="h-5 w-5" />
             </button>
-            <button onClick={handleNext} className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <ArrowRight className="h-5 w-5 text-white" />
+            <button
+              onClick={handleNext}
+              aria-label="Next"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-black/5 hover:bg-black/10 backdrop-blur"
+            >
+              <ArrowRight className="h-5 w-5" />
             </button>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export function Component() {
-  return (
-    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
-      <div className="z-10">
-        <AnimatedTestimonials testimonials={testimonials} />
-      </div>
-    </div>
-  );
 }
 
-export default Component;
+/** Public component used in the page. No extra backgrounds here. */
+export default function TeamCarousel() {
+  return <AnimatedTestimonials autoplay />;
+}
