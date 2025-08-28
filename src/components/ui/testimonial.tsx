@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -6,7 +7,7 @@ const testimonials = [
   {
     name: "Shreyas Salunkhe",
     designation: "10x Coding Club",
-    src: "/lovable-uploads/55ad6781-06fe-4418-9347-1085b456a6f3.png", // Shreyas image
+    src: "/lovable-uploads/19404656-a9ba-4b2e-ab66-8efa034b9f8f.png", // Shreyas image
     quote: (
       <>
         <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" rel="noreferrer" className="text-blue-300 hover:text-blue-200 underline">LinkedIn</a> |{" "}
