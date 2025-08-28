@@ -7,7 +7,7 @@ const testimonials = [
   {
     name: "Shreyas Salunkhe",
     designation: "10x Coding Club",
-    src: "/lovable-uploads/6699e80d-dffa-4507-a555-715611bccbd1.png",
+    src: "/lovable-uploads/df3ccc4e-7090-4a75-8473-57508a12efbf.png",
     quote: (
       <>
         <a href="https://www.linkedin.com/in/shreyas-salunkhe-b69556325/" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
@@ -18,7 +18,7 @@ const testimonials = [
   {
     name: "Tushar Kaldate",
     designation: "Member at ASSET",
-    src: "/lovable-uploads/55ad6781-06fe-4418-9347-1085b456a6f3.png",
+    src: "/lovable-uploads/a92fecfe-bd61-4250-bc0e-1a860941f15d.png",
     quote: (
       <>
         <a href="https://www.linkedin.com/in/tushar-kaldate-2b5276262/" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
@@ -29,10 +29,10 @@ const testimonials = [
   {
     name: "Aradhya Avhad",
     designation: "Mozilla Club & ASSET member",
-    src: "/lovable-uploads/59215696-90e4-4c37-bad9-1c8fdbc91219.png",
+    src: "/lovable-uploads/13b9ac3f-a9f9-4583-b852-97de1354af41.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/aradhya-avhad-800552327" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
+        <a href="https://www.linkedin.com/in/aradhya-avhad-800552327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
         <span className="text-gray-400">Instagram N/A</span>
       </>
     ),
@@ -40,10 +40,10 @@ const testimonials = [
   {
     name: "Pranshu Bobade",
     designation: "GDG Club & ASSET member",
-    src: "/lovable-uploads/a7e6a62e-cada-4a52-8f8b-491e1cb7f223.png",
+    src: "/lovable-uploads/1cf3a87d-cfa4-4545-ad2d-bc831548d642.png",
     quote: (
       <>
-        <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
+        <a href="https://www.linkedin.com/in/pranshu-bobade-18a05032a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" className="text-blue-400 hover:underline">LinkedIn</a> |{" "}
         <a href="https://www.instagram.com/notyetaegon?igsh=emVkeXNqaDRkMDFs" target="_blank" className="text-pink-400 hover:underline">Instagram</a>
       </>
     ),
@@ -84,11 +84,11 @@ const AnimatedTestimonials = ({
   const randomRotate = () => `${Math.floor(Math.random() * 16) - 8}deg`;
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-20">
-        {/* Image Section */}
+    <div className="mx-auto max-w-6xl px-4 py-12 font-sans antialiased md:px-8 lg:px-12">
+      <div className="relative grid grid-cols-1 gap-y-16 md:grid-cols-2 md:gap-x-24">
+        {/* Image Section - Much Larger */}
         <div className="flex items-center justify-center">
-          <div className="relative h-80 w-full max-w-xs">
+          <div className="relative h-[32rem] w-[26rem] md:h-[36rem] md:w-[30rem]">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -131,13 +131,13 @@ const AnimatedTestimonials = ({
               className="flex flex-col justify-between"
             >
               <div>
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-3xl md:text-4xl font-bold text-white">
                   {testimonials[active].name}
                 </h3>
-                <p className="text-sm text-blue-200">
+                <p className="text-lg text-blue-200 mt-2">
                   {testimonials[active].designation}
                 </p>
-                <motion.p className="mt-8 text-lg text-blue-100">
+                <motion.p className="mt-8 text-xl text-blue-100">
                   {testimonials[active].quote}
                 </motion.p>
               </div>
@@ -146,11 +146,11 @@ const AnimatedTestimonials = ({
 
           {/* Controls */}
           <div className="flex gap-4 pt-12">
-            <button onClick={handlePrev} className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <ArrowLeft className="h-5 w-5 text-white" />
+            <button onClick={handlePrev} className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <ArrowLeft className="h-6 w-6 text-white" />
             </button>
-            <button onClick={handleNext} className="group flex h-10 w-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
-              <ArrowRight className="h-5 w-5 text-white" />
+            <button onClick={handleNext} className="group flex h-12 w-12 items-center justify-center rounded-full bg-white/10 backdrop-blur-lg border border-white/20 hover:bg-white/20 transition-all duration-300">
+              <ArrowRight className="h-6 w-6 text-white" />
             </button>
           </div>
         </div>
@@ -161,8 +161,8 @@ const AnimatedTestimonials = ({
 
 export function Component() {
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden">
-      <div className="z-10">
+    <div className="relative flex w-full items-center justify-center overflow-hidden">
+      <div className="z-10 w-full">
         <AnimatedTestimonials testimonials={testimonials} />
       </div>
     </div>
